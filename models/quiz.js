@@ -20,34 +20,6 @@ const Quiz = {
     });
   },
 
-//   getById: (id, callback) => {
-//     db.all(
-//       `SELECT questions.id AS question_id, questions.text, options.text AS option_text, options.option_index 
-//        FROM questions 
-//        JOIN options ON questions.id = options.question_id 
-//        WHERE questions.quiz_id = ?`,
-//       [id],
-//       (err, rows) => {
-//         if (err) return callback(err);
-
-//         const questions = rows.reduce((acc, row) => {
-//           const question = acc.find((q) => q.id === row.question_id);
-//           if (question) {
-//             question.options.push({ text: row.option_text, index: row.option_index });
-//           } else {
-//             acc.push({
-//               id: row.question_id,
-//               text: row.text,
-//               options: [{ text: row.option_text, index: row.option_index }],
-//             });
-//           }
-//           return acc;
-//         }, []);
-//         callback(null, { quizId: id, quizTitle: quiz_title, questions });
-//       }
-//     );
-//   },
-
 getById: (id, callback) => {
     db.all(
       `SELECT quizzes.title AS quiz_title, 
