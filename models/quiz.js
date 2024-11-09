@@ -35,9 +35,9 @@ getById: (id, callback) => {
       (err, rows) => {
         if (err) return callback(err);
   
-        if (rows.length === 0) return callback(null, null); // No quiz found with the given ID
+        if (rows.length === 0) return callback(null, null);
   
-        const quizTitle = rows[0].quiz_title; // Get the quiz title from the first row
+        const quizTitle = rows[0].quiz_title;
   
         const questions = rows.reduce((acc, row) => {
           const question = acc.find((q) => q.id === row.question_id);
