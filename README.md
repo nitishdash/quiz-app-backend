@@ -16,7 +16,7 @@ The app allows users to create quizzes, fetch quizzes, submit answers, and check
 - **Backend**: Node.js, Express.js
 - **Database**: SQLite3 [In-Memory]
 - **Containerization**: Docker
-- **API Client**: Insomnia
+- **API Client**: Insomnia/Postman
 
 ## Getting Started
 
