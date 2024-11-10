@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./database/config');
 const quizRoutes = require('./routes/quizRoutes');
 const answerRoutes = require('./routes/answerRoutes');
 const env = require('dotenv');
@@ -22,7 +21,9 @@ app.use(bodyParser.json());
 app.use('/quiz', quizRoutes);
 app.use('/answer', answerRoutes);
 
-// Start the server
+// Start the server and listen on the port specified in DEV.env
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);
 });
+
+module.exports = app;

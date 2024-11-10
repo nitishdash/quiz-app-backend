@@ -14,6 +14,7 @@ const Quiz = {
           question.options.forEach((option, index) => {
             db.run(`INSERT INTO options (question_id, text, option_index) VALUES (?, ?, ?)`, [questionId, option, index]);
           });
+          console.log("QUIZ CREATED")
         });
       });
       callback(null, quizId);

@@ -4,7 +4,12 @@ const Answer = {
     submit: (user_id, question_id, selected_option, callback) => {
       db.get(`SELECT correct_option FROM questions WHERE id = ?`, [question_id], (err, row) => {
         if (err) return callback(err);
-  
+        
+        if (!row) {
+          console.error("No question found with this ID");
+          return callback(new Error("Question not found for ID: " + question_id));
+        }
+      
         const isCorrect = row.correct_option === selected_option;
   
         db.run(
