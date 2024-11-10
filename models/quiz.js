@@ -1,20 +1,22 @@
 const db = require('../database/config');
+const QUERIES = require('../utils/queries'); //import all sql queries
 
 const Quiz = {
   create: (title, questions, callback) => {
-    db.run(`INSERT INTO quizzes (title) VALUES (?)`, [title], function (err) {
+    db.run(QUERIES.createQuizWithTitle, [title], function (err) {
       if (err) return callback(err);
+
       const quizId = this.lastID;
 
       questions.forEach((question) => {
-        db.run(`INSERT INTO questions (quiz_id, text, correct_option) VALUES (?, ?, ?)`, [quizId, question.text, question.correct_option], function (err) {
+        db.run(QUERIES.addQuestionsToTable, [quizId, question.text, question.correct_option], function (err) {
           if (err) return callback(err);
           const questionId = this.lastID;
 
           question.options.forEach((option, index) => {
-            db.run(`INSERT INTO options (question_id, text, option_index) VALUES (?, ?, ?)`, [questionId, option, index]);
+            db.run(QUERIES.insertOptionsForQuestion, [questionId, option, index]);
           });
-          console.log("QUIZ CREATED")
+          console.log("QUIZ CREATED SUCCESSFULLY")
         });
       });
       callback(null, quizId);
@@ -23,15 +25,7 @@ const Quiz = {
 
 getById: (id, callback) => {
     db.all(
-      `SELECT quizzes.title AS quiz_title, 
-              questions.id AS question_id, 
-              questions.text AS question_text, 
-              options.text AS option_text, 
-              options.option_index 
-       FROM questions 
-       JOIN options ON questions.id = options.question_id 
-       JOIN quizzes ON questions.quiz_id = quizzes.id 
-       WHERE questions.quiz_id = ?`,
+      QUERIES.getQuizById,
       [id],
       (err, rows) => {
         if (err) return callback(err);

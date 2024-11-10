@@ -1,8 +1,9 @@
 const db = require('../database/config');
+const QUERIES = require('../utils/queries'); //import all sql queries
 
 const Answer = {
     submit: (user_id, question_id, selected_option, callback) => {
-      db.get(`SELECT correct_option FROM questions WHERE id = ?`, [question_id], (err, row) => {
+      db.get(QUERIES.getQuestionById, [question_id], (err, row) => {
         if (err) return callback(err);
         
         if (!row) {
@@ -13,7 +14,7 @@ const Answer = {
         const isCorrect = row.correct_option === selected_option;
   
         db.run(
-          `INSERT INTO answers (user_id, question_id, selected_option, is_correct) VALUES (?, ?, ?, ?)`,
+          QUERIES.addAnswerForUser,
           [user_id, question_id, selected_option, isCorrect],
           function (err) {
             if (err) return callback(err);

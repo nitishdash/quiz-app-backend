@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for quiz-app/models/result.js</title>
+    <title>Code coverage report for quiz-app/utils/queries.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">quiz-app/models</a> result.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">quiz-app/utils</a> queries.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/16</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/13</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -86,37 +86,7 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -130,42 +100,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const db = require('../database/config');
-const QUERIES = require('../utils/queries');
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const QUERIES = {
+    getQuestionById : `SELECT correct_option FROM questions WHERE id = ?;`,
+    addAnswerForUser : `INSERT INTO answers (user_id, question_id, selected_option, is_correct) VALUES (?, ?, ?, ?)`,
+    createQuizWithTitle : `INSERT INTO quizzes (title) VALUES (?)`,
+    addQuestionsToTable : `INSERT INTO questions (quiz_id, text, correct_option) VALUES (?, ?, ?)`,
+    insertOptionsForQuestion : `INSERT INTO options (question_id, text, option_index) VALUES (?, ?, ?)`,
+    getQuizById: `SELECT quizzes.title AS quiz_title, 
+                    questions.id AS question_id, 
+                    questions.text AS question_text, 
+                    options.text AS option_text, 
+                    options.option_index 
+                    FROM questions 
+                    JOIN options ON questions.id = options.question_id 
+                    JOIN quizzes ON questions.quiz_id = quizzes.id 
+                    WHERE questions.quiz_id = ?`,
+    getUserQuizAnswers: `SELECT answers.question_id, answers.selected_option, answers.is_correct, questions.correct_option 
+                        FROM answers 
+                        JOIN questions ON answers.question_id = questions.id 
+                        WHERE questions.quiz_id = ? AND answers.user_id = ?`,
+    updateUserScore: `INSERT OR REPLACE INTO results (quiz_id, user_id, score) VALUES (?, ?, ?)`
+};
 &nbsp;
-const Result = {
-    getByQuizAndUser: <span class="fstat-no" title="function not covered" >(q</span>uiz_id, user_id, callback) =&gt; {
-<span class="cstat-no" title="statement not covered" >      db.all(QUERIES.getUserQuizAnswers, [quiz_id, user_id], <span class="fstat-no" title="function not covered" >(e</span>rr, rows) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >          if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
-  
-          const correctAnswers = <span class="cstat-no" title="statement not covered" >rows.filter(<span class="fstat-no" title="function not covered" >(r</span>ow) =&gt; <span class="cstat-no" title="statement not covered" >row.is_correct)</span>.length;</span>
-          const score = <span class="cstat-no" title="statement not covered" >"" + (correctAnswers / rows.length) * 100 + "%";</span> //expressing score for a quiz as a percentage
-  
-<span class="cstat-no" title="statement not covered" >          db.run(QUERIES.updateUserScore, [quiz_id, user_id, score], <span class="fstat-no" title="function not covered" >fu</span>nction (err) {</span>
-<span class="cstat-no" title="statement not covered" >              if (err) <span class="cstat-no" title="statement not covered" >return callback(err);</span></span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >              callback(null, {</span>
-                score,
-                quizId: quiz_id,
-                userId: user_id,
-                answers: rows.map(<span class="fstat-no" title="function not covered" >(r</span>ow) =&gt; <span class="cstat-no" title="statement not covered" >row.selected_option)</span>,
-                summary: rows.map(<span class="fstat-no" title="function not covered" >(r</span>ow) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
-                  question_id: row.question_id,
-                  selected_option: row.selected_option,
-                  correct_answer: row.correct_option,
-                  is_correct: Boolean(row.is_correct),
-                })),
-              });
-            }
-          );
-        }
-      );
-    },
-  };
-  
-  module.exports = Result;
-  </pre></td></tr></table></pre>
+module.exports = QUERIES;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
