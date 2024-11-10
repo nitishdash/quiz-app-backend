@@ -1,4 +1,5 @@
 const db = require('../database/config');
+const CustomError = require('../utils/CustomError');
 const QUERIES = require('../utils/queries'); //import all sql queries
 
 const Answer = {
@@ -7,8 +8,7 @@ const Answer = {
         if (err) return callback(err);
         
         if (!row) {
-          console.error("No question found with this ID");
-          return callback(new Error("Question not found for ID: " + question_id));
+          return callback(new CustomError(`Question not found for question_id: ${question_id}`, 404), null);
         }
       
         const isCorrect = row.correct_option === selected_option;

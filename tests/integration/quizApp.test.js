@@ -62,6 +62,7 @@ describe('Quiz API Integration Tests', () => {
   });
 
   const userId = 1;
+  const selectedOption = 0;
 
   //TEST 3: Emulate user hitting the endpoint and submitting the answer
   test('should submit an answer and return correct/incorrect feedback', async () => {
@@ -70,9 +71,11 @@ describe('Quiz API Integration Tests', () => {
       .send({
         user_id: userId,
         question_id: questionId,
-        selected_option: 0
+        selected_option: selectedOption
       });
 
+    console.log("selected - > "+ selectedOption);
+    
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('isCorrect', true);
   }, 5000);

@@ -16,6 +16,7 @@ const PORT = process.env.APP_PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
+// app.use(express.json());
 
 // Routes
 app.use('/quiz', quizRoutes);

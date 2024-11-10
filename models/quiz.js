@@ -1,4 +1,5 @@
 const db = require('../database/config');
+const CustomError = require('../utils/CustomError');
 const QUERIES = require('../utils/queries'); //import all sql queries
 
 const Quiz = {
@@ -16,9 +17,10 @@ const Quiz = {
           question.options.forEach((option, index) => {
             db.run(QUERIES.insertOptionsForQuestion, [questionId, option, index]);
           });
-          console.log("QUIZ CREATED SUCCESSFULLY")
+          
         });
       });
+      console.log("QUIZ CREATED SUCCESSFULLY")
       callback(null, quizId);
     });
   },
@@ -28,9 +30,12 @@ getById: (id, callback) => {
       QUERIES.getQuizById,
       [id],
       (err, rows) => {
-        if (err) return callback(err);
-  
-        if (rows.length === 0) return callback(null, null);
+        if (err) return callback(err); //for database related error, pass generic error message
+        
+        //No quiz found with provided id
+        if (rows.length === 0) {
+          return callback(new CustomError(`No quiz found with the provided id: ${id}`, 404), null);
+        }
   
         const quizTitle = rows[0].quiz_title;
   
@@ -55,7 +60,5 @@ getById: (id, callback) => {
 
 };
 
-
-  
 
 module.exports = Quiz;

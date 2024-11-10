@@ -1,11 +1,17 @@
 const db = require('../database/config');
 const QUERIES = require('../utils/queries');
+const CustomError = require('../utils/CustomError');
 
 const Result = {
     getByQuizAndUser: (quiz_id, user_id, callback) => {
       db.all(QUERIES.getUserQuizAnswers, [quiz_id, user_id], (err, rows) => {
           if (err) return callback(err);
-  
+
+          //Check if the user_id exists in the DB
+        if (rows.length === 0) {
+          return callback(new CustomError(`No such user with userID: ${user_id}`, 404), null);
+        }
+
           const correctAnswers = rows.filter((row) => row.is_correct).length;
           const score = "" + (correctAnswers / rows.length) * 100 + "%"; //expressing score for a quiz as a percentage
   
